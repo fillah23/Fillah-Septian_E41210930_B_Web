@@ -401,7 +401,7 @@ function findHandler(events, callable, delegationSelector = null) {
 }
 
 function normalizeParameters(originalTypeEvent, handler, delegationFunction) {
-  const isDelegated = typeof handler === 'string'; // todo: tooltip passes `false` instead of selector, so we need to check
+  const isDelegated = typeof handler === 'string'; // tooltip passes `false` instead of selector, so we need to check
 
   const callable = isDelegated ? delegationFunction : handler || delegationFunction;
   let typeEvent = getTypeEvent(originalTypeEvent);
@@ -1068,7 +1068,7 @@ const SelectorEngine = {
     return [];
   },
 
-  // TODO: this is now unused; remove later along with prev()
+  // this is now unused; remove later along with prev()
   next(element, selector) {
     let next = element.nextElementSibling;
 
@@ -1536,7 +1536,7 @@ class Carousel extends BaseComponent {
 
     if (!activeElement || !nextElement) {
       // Some weirdness is happening, so we bail
-      // todo: change tests that use empty divs to avoid this check
+      // change tests that use empty divs to avoid this check
       return;
     }
 
@@ -2036,7 +2036,7 @@ class Dropdown extends BaseComponent {
     super(element, config);
     this._popper = null;
     this._parent = this._element.parentNode; // dropdown wrapper
-    // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+    // v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
 
     this._menu = SelectorEngine.next(this._element, SELECTOR_MENU)[0] || SelectorEngine.prev(this._element, SELECTOR_MENU)[0] || SelectorEngine.findOne(SELECTOR_MENU, this._parent);
     this._inNavbar = this._detectNavbar();
@@ -2354,7 +2354,7 @@ class Dropdown extends BaseComponent {
       return;
     }
 
-    event.preventDefault(); // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+    event.preventDefault(); // v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
 
     const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$3) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.next(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.findOne(SELECTOR_DATA_TOGGLE$3, event.delegateTarget.parentNode);
     const instance = Dropdown.getOrCreateInstance(getToggleButton);
@@ -3967,14 +3967,14 @@ class Tooltip extends BaseComponent {
   }
 
   _createTipElement(content) {
-    const tip = this._getTemplateFactory(content).toHtml(); // todo: remove this check on v6
+    const tip = this._getTemplateFactory(content).toHtml(); // remove this check on v6
 
 
     if (!tip) {
       return null;
     }
 
-    tip.classList.remove(CLASS_NAME_FADE$2, CLASS_NAME_SHOW$2); // todo: on v6 the following can be achieved with CSS only
+    tip.classList.remove(CLASS_NAME_FADE$2, CLASS_NAME_SHOW$2); // on v6 the following can be achieved with CSS only
 
     tip.classList.add(`bs-${this.constructor.NAME}-auto`);
     const tipId = getUID(this.constructor.NAME).toString();
@@ -4403,7 +4403,7 @@ const SELECTOR_DROPDOWN = '.dropdown';
 const SELECTOR_DROPDOWN_TOGGLE$1 = '.dropdown-toggle';
 const Default$1 = {
   offset: null,
-  // TODO: v6 @deprecated, keep it for backwards compatibility reasons
+  // v6 @deprecated, keep it for backwards compatibility reasons
   rootMargin: '0px 0px -25%',
   smoothScroll: false,
   target: null,
@@ -4475,8 +4475,8 @@ class ScrollSpy extends BaseComponent {
 
 
   _configAfterMerge(config) {
-    // TODO: on v6 target should be given explicitly & remove the {target: 'ss-target'} case
-    config.target = getElement(config.target) || document.body; // TODO: v6 Only for backwards compatibility reasons. Use rootMargin only
+    // on v6 target should be given explicitly & remove the {target: 'ss-target'} case
+    config.target = getElement(config.target) || document.body; // v6 Only for backwards compatibility reasons. Use rootMargin only
 
     config.rootMargin = config.offset ? `${config.offset}px 0px -30%` : config.rootMargin;
 
@@ -4712,7 +4712,7 @@ class Tab extends BaseComponent {
     this._parent = this._element.closest(SELECTOR_TAB_PANEL);
 
     if (!this._parent) {
-      return; // todo: should Throw exception on v6
+      return; // should Throw exception on v6
       // throw new TypeError(`${element.outerHTML} has not a valid parent ${SELECTOR_INNER_ELEM}`)
     } // Set up initial aria attributes
 
